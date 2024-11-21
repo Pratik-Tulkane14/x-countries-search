@@ -6,7 +6,7 @@ interface cardProps {
 }
 const Card: React.FC<cardProps> = ({ src, alt, countryName }) => {
     return (
-        <div className='card'>
+        <div className='countryCard'>
             <img src={src} alt={alt} />
             <span>{countryName}</span>
         </div>
