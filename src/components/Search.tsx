@@ -6,7 +6,7 @@ interface searchInput {
 const Search: React.FC<searchInput> = ({ search, setSearch }) => {
     return (
         <>
-            <input className='search' placeholder='Search for countries' type='search' value={search} onChange={(e) => setSearch(e.target.value)}></input>
+            <input className='search' placeholder='Search for countries' type='text' value={search} onChange={(e) => setSearch(e.target.value)}></input>
         </>
     )
 }

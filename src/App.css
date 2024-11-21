@@ -2,9 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin: 5px;
   border: 1px solid gray;
   border-radius: 5px;
+  max-width: 200px;
 }
 .card>img{
   height: 80px;
@@ -18,6 +20,10 @@
 .card-wrapper{
   display: grid;
   grid-template-columns: repeat(7,auto);
+}
+.no-result{
+  text-align: center;
+  font-weight: bold;
 }
 .search-wrapper{
   display: flex;

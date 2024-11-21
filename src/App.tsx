@@ -60,6 +60,7 @@ function App() {
           return <Card key={index} src={ele.flags.png} alt={"Country flag"} countryName={ele.name.official} />
         })}
       </div>
+        {countries.length===0&&<p className='no-result'>no results</p>}
     </>
   )
 }
