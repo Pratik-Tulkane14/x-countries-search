@@ -23,8 +23,9 @@ interface Country {
 }
 function App() {
   const [countries, setCountries] = useState<Country[]>([]);
+  const [filteredData, setFilteredData] = useState<Country[]>([])
   const [search, setSearch] = useState<string>("")
-  console.log(search, "search");
+  console.log(filteredData, "search");
 
   const getCountries = async () => {
     try {
@@ -39,9 +40,8 @@ function App() {
   }, [])
   useEffect(() => {
     if (search != "") {
-      const data = countries.filter((item) => item.name.official.toLowerCase().includes((search.toLowerCase())))
-      console.log("data", data);
-      setCountries(data)
+      const data = countries.filter((item) => item.name.common.toLowerCase().includes((search.toLowerCase())))
+      setFilteredData(data)
 
     }
     if (search === "") {
@@ -55,12 +55,18 @@ function App() {
       <div className='search-wrapper'>
         <Search search={search} setSearch={setSearch} />
       </div>
+      {search===""&&
       <div className="card-wrapper">
         {countries?.map((ele, index) => {
-          return <Card key={index} src={ele.flags.png} alt={"Country flag"} countryName={ele.name.official} />
+          return <Card key={index} src={ele.flags.png} alt={"Country flag"} countryName={ele.name.common} />
         })}
       </div>
-        {countries.length===0&&<p className='no-result'>no results</p>}
+      }
+        {filteredData.length===0?<p className='no-result'>no results</p>:<div className="card-wrapper">
+        {filteredData?.map((ele, index) => {
+          return <Card key={index} src={ele.flags.png} alt={"Country flag"} countryName={ele.name.common} />
+        })}
+      </div>}
     </>
   )
 }
