@@ -25,12 +25,13 @@ function App() {
   const [countries, setCountries] = useState<Country[]>([]);
   const [filteredData, setFilteredData] = useState<Country[]>([])
   const [search, setSearch] = useState<string>("")
-  console.log(filteredData, "filteredData");
+  // console.log(countries, "countries");
 
   const getCountries = async () => {
     try {
       const response: AxiosResponse<Country[]> = await axios.get(`${BASEURL}/all`);
       setCountries(response.data);
+      setFilteredData(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -55,13 +56,6 @@ function App() {
       <div className='search-wrapper'>
         <Search search={search} setSearch={setSearch} />
       </div>
-      {search === "" &&
-        <div className="card-wrapper">
-          {countries?.map((ele, index) => {
-            return <Card key={index} src={ele.flags.png} alt={"Country flag"} countryName={ele.name.common} />
-          })}
-        </div>
-      }
       {filteredData.length === 0 ? <p className='no-result'>no results</p> : <div className="card-wrapper">
         {filteredData?.map((ele, index) => {
           return <Card key={index} src={ele.flags.png} alt={"Country flag"} countryName={ele.name.common} />
